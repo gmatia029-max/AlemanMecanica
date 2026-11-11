@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALEMAN MECANICA INTEGRAL - Taller Mecánico Especializado</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Configuración de Tema y Colores Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#0a0a0b',
+                            dark: '#121316',
+                            card: '#181a1f',
+                            red: '#e60000',
+                            redHover: '#cc0000',
+                            redGlow: 'rgba(230, 0, 0, 0.4)',
+                            silver: '#c0c0c0',
+                            chrome: '#e5e7eb',
+                            chromeDark: '#4b5563',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        tech: ['Rajdhani', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'red-glow': '0 0 25px -5px rgba(230, 0, 0, 0.5)',
+                        'chrome-glow': '0 0 15px -3px rgba(229, 231, 235, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .text-chrome {
+            background: linear-gradient(180deg, #FFFFFF 0%, #D1D5DB 50%, #6B7280 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-panel {
+            background: rgba(24, 26, 31, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-nav {
+            background: rgba(10, 10, 11, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2a2d35;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e60000;
+        }
+    </style>
+</head>
+<body class="bg-brand-black text-gray-200 antialiased font-sans selection:bg-brand-red selection:text-white overflow-x-hidden">
+
+    <!-- CONFIGURACIÓN GLOBAL Y PERSISTENTE -->
+    <script>
+        const DEFAULT_CONFIG = {
+            nombre: "ALEMAN MECANICA INTEGRAL",
+            slogan: "Especialistas en Tren Delantero, Trasero y Mecánica Multimarca",
+            telefonoWhatsApp: "5493880000000", 
+            telefonoDisplay: "Tel: Y4600",
+            direccion: "Calle Almirante Brown 826",
+            barrio: "Barrio San Pedrito",
+            ciudad: "San Salvador de Jujuy, Jujuy",
+            badgeHeader: "INTEGRAL • San Pedrito (Y4600)",
+            logoUrl: "", 
+            
+            imagenes: {
+                heroBg: "https://images.unsplash.com/photo-1613214149922-f1809c99b414?q=80&w=1920&auto=format&fit=crop",
+                trenDelantero: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?q=80&w=1000&auto=format&fit=crop",
+                distribucionAceite: "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?q=80&w=800&auto=format&fit=crop",
+                chapaPintura: "https://images.unsplash.com/photo-1625047509168-a7026f36de04?q=80&w=800&auto=format&fit=crop",
+                escaneo: "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?q=80&w=800&auto=format&fit=crop",
+                frenos: "https://images.unsplash.com/photo-1600793575654-910699b5e4d4?q=80&w=800&auto=format&fit=crop",
+                embragues: "https://images.unsplash.com/photo-1530046339160-ce3e530c7d2f?q=80&w=800&auto=format&fit=crop",
+                mecanicaLigera: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop"
+            },
+
+            galeria: [
+                {
+                    titulo: "Restauración Tren Delantero",
+                    descripcion: "Cambio de amortiguadores, bujes de parilla, rótulas y extremos.",
+                    antes: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?q=80&w=800&auto=format&fit=crop",
+                    despues: "https://images.unsplash.com/photo-1486006920555-c77dce18193b?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                    titulo: "Chapa y Pintura Horneada",
+                    descripcion: "Reparación de golpe lateral en guardabarros y pintura acabado espejo.",
+                    antes: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=800&auto=format&fit=crop",
+                    despues: "https://images.unsplash.com/photo-1625047509168-a7026f36de04?q=80&w=800&auto=format&fit=crop"
+                },
+                {
+                    titulo: "Mantenimiento Frenos y Discos",
+                    descripcion: "Rectificación de discos de freno y reemplazo de pastillas de freno.",
+                    antes: "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?q=80&w=800&auto=format&fit=crop",
+                    despues: "https://images.unsplash.com/photo-1600793575654-910699b5e4d4?q=80&w=800&auto=format&fit=crop"
+                }
+            ]
+        };
+
+        function getStoredConfig() {
+            const stored = localStorage.getItem("TALLER_CONFIG_STORAGE");
+            if (stored) {
+                try { 
+                    const parsed = JSON.parse(stored);
+                    return { ...DEFAULT_CONFIG, ...parsed, imagenes: { ...DEFAULT_CONFIG.imagenes, ...(parsed.imagenes || {}) } };
+                } catch(e) { 
+                    return DEFAULT_CONFIG; 
+                }
+            }
+            return DEFAULT_CONFIG;
+        }
+
+        window.TALLER_CONFIG = getStoredConfig();
+    </script>
+
+    <!-- BARRA SUPERIOR DE ACCESO RÁPIDO ADMIN -->
+    <div class="bg-gray-950 text-gray-400 py-1.5 px-4 border-b border-gray-800 text-xs flex justify-between items-center z-50 relative">
+        <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+            <span class="hidden sm:inline">San Salvador de Jujuy • San Pedrito</span>
+            <span class="sm:hidden">Jujuy • San Pedrito</span>
+        </div>
+        <button onclick="openAdminLoginModal()" class="bg-brand-red/20 hover:bg-brand-red hover:text-white text-brand-red px-3 py-1 rounded border border-brand-red/40 font-semibold transition-all flex items-center gap-1.5 cursor-pointer">
+            <i class="fa-solid fa-lock"></i>
+            <span>PANEL ADMIN</span>
+        </button>
+    </div>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 w-full z-40 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <a href="#" class="flex items-center gap-3 group">
+                <div id="logoIconBox" class="w-11 h-11 rounded-lg bg-gradient-to-br from-brand-red via-red-600 to-gray-400 p-[1px] shadow-red-glow">
+                    <div class="w-full h-full bg-brand-black rounded-[7px] flex items-center justify-center border border-gray-800">
+                        <i class="fa-solid fa-wrench text-brand-red text-xl group-hover:rotate-45 transition-transform duration-300"></i>
+                    </div>
+                </div>
+                <img id="logoCustomImg" src="" alt="Logo Taller" class="h-10 object-contain hidden">
+                <div class="flex flex-col">
+                    <span class="font-tech text-xl sm:text-2xl font-extrabold tracking-wider text-white leading-none" id="navNombreTaller">
+                        ALEMAN <span class="text-brand-red">MECÁNICA</span>
+                    </span>
+                    <span class="text-[10px] text-gray-400 tracking-widest uppercase mt-0.5 font-semibold" id="headerBadgeText">INTEGRAL • San Pedrito (Y4600)</span>
+                </div>
+            </a>
+
+            <!-- Navegación Escritorio -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#especialidad" class="hover:text-brand-red transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-star text-xs text-brand-red"></i> Especialidad
+                </a>
+                <a href="#servicios" class="hover:text-brand-red transition-colors">Servicios</a>
+                <a href="#galeria" class="hover:text-brand-red transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-images text-xs text-brand-red"></i> Galería
+                </a>
+                <a href="#contacto" class="hover:text-brand-red transition-colors">Ubicación</a>
+            </nav>
+
+            <div class="hidden sm:flex items-center gap-4">
+                <a id="navPhoneLink" href="tel:Y4600" class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-300 hover:text-white bg-gray-900/80 px-3 py-2 rounded-lg border border-gray-800">
+                    <i class="fa-solid fa-phone text-brand-red animate-pulse"></i>
+                    <span id="navPhoneDisplay">Tel: Y4600</span>
+                </a>
+                
+                <button onclick="openBookingModal()" class="px-5 py-2.5 bg-brand-red hover:bg-red-700 text-white text-sm font-bold rounded-lg shadow-red-glow transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>PEDIR TURNO</span>
+                </button>
+            </div>
+
+            <button onclick="toggleMobileMenu()" class="md:hidden text-gray-300 hover:text-white text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Menú Móvil -->
+        <div id="mobileMenu" class="hidden md:hidden bg-brand-dark border-b border-gray-800 px-6 py-6 space-y-4">
+            <a href="#especialidad" onclick="toggleMobileMenu()" class="block text-lg font-medium text-gray-200 hover:text-brand-red">★ Especialidad Tren Delantero</a>
+            <a href="#servicios" onclick="toggleMobileMenu()" class="block text-lg font-medium text-gray-200 hover:text-brand-red">Servicios Integrales</a>
+            <a href="#galeria" onclick="toggleMobileMenu()" class="block text-lg font-medium text-gray-200 hover:text-brand-red">🖼️ Galería Antes y Después</a>
+            <a href="#contacto" onclick="toggleMobileMenu()" class="block text-lg font-medium text-gray-200 hover:text-brand-red">Ubicación y Horarios</a>
+            
+            <div class="pt-4 border-t border-gray-800 flex flex-col gap-3">
+                <button onclick="openAdminLoginModal(); toggleMobileMenu();" class="w-full py-2 bg-gray-900 text-gray-300 hover:text-white text-xs font-semibold rounded border border-gray-700">
+                    <i class="fa-solid fa-user-gear mr-1"></i> Panel de Administración
+                </button>
+                <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full py-3 bg-brand-red text-white font-bold rounded-lg shadow-red-glow">
+                    Solicitar Turno Online
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[85vh] pt-20 pb-16 flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img id="heroBgImage" src="" alt="Taller Mecánico Jujuy" class="w-full h-full object-cover object-center filter brightness-40 contrast-125 scale-105 transition-all duration-1000">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/70 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/50 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border-l-4 border-l-brand-red shadow-lg">
+                        <span class="flex h-2.5 w-2.5 relative">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-red opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-red"></span>
+                        </span>
+                        <span class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-chrome" id="heroBadge">
+                            ALEMAN MECANICA INTEGRAL • Jujuy
+                        </span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        <span id="heroTitleMain">ALEMAN MECANICA INTEGRAL</span> <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-red via-red-500 to-white">TREN DELANTERO Y TRASERO</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed" id="heroSloganText">
+                        Especialistas en Reparación de Tren Delantero y Trasero, Distribución, Chapa y Pintura, Frenos, Embragues y Diagnóstico Computarizado Multimarca.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <button onclick="openBookingModal('Tren Delantero')" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-red to-red-700 hover:from-red-600 hover:to-brand-red text-white font-bold rounded-xl shadow-red-glow transition-all flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-calendar-check text-lg"></i>
+                            <span>SOLICITAR DIAGNÓSTICO</span>
+                        </button>
+
+                        <a id="heroWhatsappBtn" href="#" target="_blank" class="w-full sm:w-auto px-8 py-4 glass-panel hover:bg-gray-800/80 text-white font-semibold rounded-xl border border-gray-700 hover:border-brand-red transition-all flex items-center justify-center gap-3 group">
+                            <i class="fa-brands fa-whatsapp text-xl text-green-500 group-hover:scale-110 transition-transform"></i>
+                            <span>CONSULTAR POR WHATSAPP</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="glass-panel p-6 sm:p-8 rounded-2xl border-t-2 border-t-brand-red relative overflow-hidden shadow-2xl">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-wrench text-brand-red"></i>
+                                <span id="widgetNombre">Aleman Mecánica Integral</span>
+                            </h3>
+                            <span class="text-xs font-semibold px-2.5 py-1 bg-red-950/80 text-brand-red border border-brand-red/30 rounded">B° San Pedrito</span>
+                        </div>
+
+                        <div class="space-y-4 mb-6 text-sm">
+                            <div class="flex items-start gap-3 p-3 rounded-lg bg-black/50 border border-gray-800">
+                                <i class="fa-solid fa-location-dot text-brand-red mt-1"></i>
+                                <div>
+                                    <p class="text-white font-medium">Dirección del Taller</p>
+                                    <p class="text-xs text-gray-400" id="widgetDireccion">Calle Almirante Brown 826, San Salvador de Jujuy</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3 p-3 rounded-lg bg-black/50 border border-gray-800">
+                                <i class="fa-solid fa-shield-halved text-brand-red mt-1"></i>
+                                <div>
+                                    <p class="text-white font-medium">Garantía en Repuestos y Trabajo</p>
+                                    <p class="text-xs text-gray-400">Revisión completa de bujes, amortiguación, cremalleras y sistemas de freno.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="openBookingModal()" class="w-full py-3.5 bg-brand-red hover:bg-red-700 text-white font-bold rounded-lg shadow-red-glow transition-all flex items-center justify-center gap-2">
+                            <span>RESERVAR TURNO DE REVISIÓN</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN ESPECIALIDAD: TREN DELANTERO Y TRASERO -->
+    <section id="especialidad" class="py-20 bg-gradient-to-b from-brand-black via-brand-dark to-brand-black relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-red font-tech font-bold text-lg tracking-wider uppercase">NUESTRA ESPECIALIDAD DESTACADA</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Reparación Integral de Tren Delantero y Trasero</h2>
+                <div class="w-24 h-1 bg-brand-red mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-center bg-brand-card rounded-2xl p-6 sm:p-10 border border-gray-800 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-2 h-full bg-brand-red"></div>
+
+                <div class="lg:col-span-6 relative group overflow-hidden rounded-xl border border-gray-700">
+                    <img id="imgTrenDelantero" src="" alt="Tren Delantero Jujuy" class="w-full h-80 lg:h-[420px] object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-4 left-4 right-4 p-4 glass-panel rounded-lg">
+                        <p class="text-white font-semibold text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-shield-halved text-brand-red"></i>
+                            Seguridad y Estabilidad en Suspensión
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 space-y-6">
+                    <h3 class="text-2xl font-bold text-white flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-full bg-brand-red/20 text-brand-red flex items-center justify-center text-sm border border-brand-red">01</span>
+                        <span>Diagnóstico e Inspección Completa</span>
+                    </h3>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="p-4 bg-black/60 rounded-xl border border-gray-800">
+                            <i class="fa-solid fa-circle-check text-brand-red mb-2 text-xl"></i>
+                            <h4 class="text-white font-semibold text-sm">Amortiguadores y Espirales</h4>
+                        </div>
+                        <div class="p-4 bg-black/60 rounded-xl border border-gray-800">
+                            <i class="fa-solid fa-circle-check text-brand-red mb-2 text-xl"></i>
+                            <h4 class="text-white font-semibold text-sm">Bujes y Parrillas de Suspensión</h4>
+                        </div>
+                        <div class="p-4 bg-black/60 rounded-xl border border-gray-800">
+                            <i class="fa-solid fa-circle-check text-brand-red mb-2 text-xl"></i>
+                            <h4 class="text-white font-semibold text-sm">Rótulas, Extremos y Cazoletas</h4>
+                        </div>
+                        <div class="p-4 bg-black/60 rounded-xl border border-gray-800">
+                            <i class="fa-solid fa-circle-check text-brand-red mb-2 text-xl"></i>
+                            <h4 class="text-white font-semibold text-sm">Cremallera y Semiejes</h4>
+                        </div>
+                    </div>
+
+                    <button onclick="openBookingModal('Tren Delantero y Trasero')" class="px-6 py-3.5 bg-brand-red hover:bg-red-700 text-white font-bold rounded-lg shadow-red-glow transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-calendar-plus"></i>
+                        <span>PEDIR TURNO PARA TREN DELANTERO</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS DEL TALLER (7 SERVICIOS PEDIDOS) -->
+    <section id="servicios" class="py-20 bg-brand-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-red font-tech font-bold text-lg tracking-wider uppercase">SERVICIOS INTEGRALES</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Mecánica General Multimarca</h2>
+                <div class="w-24 h-1 bg-brand-red mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- 1. Tren Delantero y Trasero -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-brand-red/60 hover:border-brand-red transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img id="imgCard1" src="" alt="Tren delantero" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <span class="absolute top-3 right-3 bg-brand-red text-white text-xs font-bold px-3 py-1 rounded-full">★ DESTACADO</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">1. Tren Delantero y Trasero</h3>
+                            <p class="text-gray-400 text-sm">Diagnóstico y reparación completa de suspensión, amortiguación y bujes.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openBookingModal('Tren Delantero y Trasero')" class="w-full py-2.5 bg-gray-900 hover:bg-brand-red text-gray-200 hover:text-white font-semibold text-sm rounded-lg border border-gray-700 transition-all">Solicitar Turno</button>
+                    </div>
+                </div>
+
+                <!-- 2. Distribución y Cambio de Aceite -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img id="imgCard2" src="" alt="Distribución y Aceite" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">2. Distribución y Cambio de Aceite</h3>
+                            <p class="text-gray-400 text-sm">Cambio de kit de distribución, correa, tensores, bomba de agua y lubricantes.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openBookingModal('Distribución y Cambio de Aceite')" class="w-full py-2.5 bg-gray-900 hover:bg-brand-red text-gray-200 hover:text-white font-semibold text-sm rounded-lg border border-gray-700 transition-all">Solicitar Turno</button>
+                    </div>
+                </div>
+
+                <!-- 3. Chapa y Pintura -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img id="imgCard3" src="" alt="Chapa y Pintura" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">3. Chapa y Pintura</h3>
+                            <p class="text-gray-400 text-sm">Reparación de carrocería, abolladuras y acabado de pintura horneada.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openBookingModal('Chapa y Pintura')" class="w-full py-2.5 bg-gray-900 hover:bg-brand-red text-gray-200 hover:text-white font-semibold text-sm rounded-lg border border-gray-700 transition-all">Solicitar Turno</button>
+                    </div>
+                </div>
+
+                <!-- 4. Escaneo Computarizado -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img id="imgCard4" src="" alt="Escaneo Computarizado" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">4. Escaneo Computarizado</h3>
+                            <p class="text-gray-400 text-sm">Lectura electrónica de fallas de inyección, sensores y borrado de averías.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openBookingModal('Escaneo Computarizado')" class="w-full py-2.5 bg-gray-900 hover:bg-brand-red text-gray-200 hover:text-white font-semibold text-sm rounded-lg border border-gray-700 transition-all">Solicitar Turno</button>
+                    </div>
+                </div>
+
+                <!-- 5. Reparación de Frenos -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img id="imgCard5" src="" alt="Frenos" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">5. Reparación de Frenos</h3>
+                            <p class="text-gray-400 text-sm">Rectificación de discos y campanas, cambio de pastillas y bombas.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openBookingModal('Reparación de Frenos')" class="w-full py-2.5 bg-gray-900 hover:bg-brand-red text-gray-200 hover:text-white font-semibold text-sm rounded-lg border border-gray-700 transition-all">Solicitar Turno</button>
+                    </div>
+                </div>
+
+                <!-- 6. Cambio y Reparación de Embragues -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img id="imgCard6" src="" alt="Embragues" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">6. Cambio y Reparación de Embragues</h3>
+                            <p class="text-gray-400 text-sm">Sustitución de placa, disco, crapodina y rectificado de volante.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openBookingModal('Cambio y Reparación de Embragues')" class="w-full py-2.5 bg-gray-900 hover:bg-brand-red text-gray-200 hover:text-white font-semibold text-sm rounded-lg border border-gray-700 transition-all">Solicitar Turno</button>
+                    </div>
+                </div>
+
+                <!-- 7. Mecánica Ligera Multimarca (Services) -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red transition-all group flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                    <div>
+                        <div class="relative h-48 overflow-hidden">
+                            <img id="imgCard7" src="" alt="Mecánica Ligera Multimarca" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2">7. Mecánica Ligera Multimarca</h3>
+                            <p class="text-gray-400 text-sm">Services programados, filtros, bujías, correas y control de fluidos.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openBookingModal('Mecánica Ligera Multimarca')" class="w-full py-2.5 bg-gray-900 hover:bg-brand-red text-gray-200 hover:text-white font-semibold text-sm rounded-lg border border-gray-700 transition-all">Solicitar Turno</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA DE ANTES Y DESPUÉS -->
+    <section id="galeria" class="py-20 bg-gradient-to-b from-brand-black via-brand-dark to-brand-black border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-red font-tech font-bold text-lg tracking-wider uppercase">TRABAJOS REALIZADOS</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Galería de Antes y Después</h2>
+                <p class="text-gray-400 text-sm mt-2">Observa los resultados reales entregados en nuestro taller.</p>
+                <div class="w-24 h-1 bg-brand-red mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div id="galeriaContainer" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Se puebla mediante JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- UBICACIÓN Y CONTACTO -->
+    <section id="contacto" class="py-20 bg-brand-dark border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-5 space-y-6">
+                    <h2 class="text-3xl font-extrabold text-white">Ubicación del Taller</h2>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-brand-card rounded-xl border border-gray-800 flex items-start gap-4">
+                            <i class="fa-solid fa-location-dot text-brand-red text-xl mt-1"></i>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Dirección</h4>
+                                <p class="text-gray-300 text-sm" id="contactDireccion">Calle Almirante Brown 826, San Pedrito</p>
+                                <p class="text-gray-400 text-xs">San Salvador de Jujuy, JUJUY</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-brand-card rounded-xl border border-gray-800 flex items-start gap-4">
+                            <i class="fa-solid fa-phone text-brand-red text-xl mt-1"></i>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Teléfono / Referencia</h4>
+                                <p class="text-gray-300 text-sm" id="contactTelefono">Tel: Y4600</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 h-[380px] bg-brand-card rounded-2xl overflow-hidden border border-gray-800 shadow-2xl">
+                    <iframe 
+                        title="Mapa de Ubicación"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; filter: grayscale(0.7) contrast(1.2) invert(0.9) hue-rotate(170deg);" 
+                        loading="lazy" 
+                        src="https://maps.google.com/maps?q=Calle%20Almirante%20Brown%20826%20San%20Salvador%20de%20Jujuy&t=&z=16&ie=UTF8&iwloc=&output=embed">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-gray-400 py-12 border-t border-gray-900 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p>© <span id="currentYear"></span> <span id="footerNombreTaller">ALEMAN MECANICA INTEGRAL</span>. San Salvador de Jujuy.</p>
+            <button onclick="openAdminLoginModal()" class="text-xs text-gray-500 hover:text-brand-red transition-colors flex items-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-user-lock"></i> Acceder como Administrador
+            </button>
+        </div>
+    </footer>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a id="floatingWhatsapp" href="#" target="_blank" class="fixed bottom-6 right-6 z-30 flex items-center justify-center w-14 h-14 bg-green-600 hover:bg-green-500 text-white rounded-full shadow-2xl transition-all hover:scale-110">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- MODAL DE TURNOS -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-panel w-full max-w-lg rounded-2xl border border-brand-red/40 overflow-hidden shadow-2xl p-6 relative">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-white">Solicitar Turno en Taller</h3>
+                <button onclick="closeBookingModal()" class="text-gray-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <input type="text" id="formNombre" required placeholder="Nombre y Apellido" class="w-full p-3 bg-black/60 border border-gray-700 rounded-lg text-white text-sm outline-none focus:border-brand-red">
+                <input type="tel" id="formTelefono" required placeholder="Teléfono de contacto" class="w-full p-3 bg-black/60 border border-gray-700 rounded-lg text-white text-sm outline-none focus:border-brand-red">
+                <input type="text" id="formVehiculo" required placeholder="Marca, Modelo y Año del auto" class="w-full p-3 bg-black/60 border border-gray-700 rounded-lg text-white text-sm outline-none focus:border-brand-red">
+                <select id="formServicio" class="w-full p-3 bg-black/60 border border-gray-700 rounded-lg text-white text-sm outline-none focus:border-brand-red">
+                    <option value="Tren Delantero y Trasero">1. Tren Delantero y Trasero</option>
+                    <option value="Distribución y Cambio de Aceite">2. Distribución y Cambio de Aceite</option>
+                    <option value="Chapa y Pintura">3. Chapa y Pintura</option>
+                    <option value="Escaneo Computarizado">4. Escaneo Computarizado</option>
+                    <option value="Reparación de Frenos">5. Reparación de Frenos</option>
+                    <option value="Cambio y Reparación de Embragues">6. Cambio y Reparación de Embragues</option>
+                    <option value="Mecánica Ligera Multimarca">7. Mecánica Ligera Multimarca</option>
+                </select>
+                <textarea id="formMensaje" placeholder="Comentarios adicionales o falla notada" class="w-full p-3 bg-black/60 border border-gray-700 rounded-lg text-white text-sm outline-none focus:border-brand-red" rows="3"></textarea>
+                <button type="submit" class="w-full py-3.5 bg-brand-red text-white font-bold rounded-lg shadow-red-glow hover:bg-red-700 transition-all">ENVIAR A WHATSAPP</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 1: AUTENTICACIÓN ADMIN -->
+    <div id="adminLoginModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+        <div class="glass-panel w-full max-w-sm rounded-2xl border border-brand-red/60 p-6 shadow-2xl relative">
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 rounded-full bg-brand-red/20 text-brand-red mx-auto flex items-center justify-center text-2xl mb-2 border border-brand-red shadow-red-glow">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white">Panel de Administración</h3>
+                <p class="text-xs text-gray-400 mt-1">Ingresa la clave para modificar el taller</p>
+            </div>
+
+            <form onsubmit="handleAdminAuth(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-300 mb-1">Contraseña Admin:</label>
+                    <input type="password" id="adminPasswordInput" placeholder="Contraseña: admin123" required class="w-full p-3 bg-black/80 border border-gray-700 rounded-lg text-white text-sm focus:border-brand-red outline-none">
+                </div>
+                <p id="adminAuthError" class="text-xs text-red-500 hidden text-center font-semibold">Contraseña incorrecta. Utiliza: admin123</p>
+                <button type="submit" class="w-full py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-lg shadow-red-glow transition-all">ENTRAR AL PANEL</button>
+                <button type="button" onclick="closeAdminLoginModal()" class="w-full py-2 text-xs text-gray-400 hover:text-white">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: PANEL DE ADMINISTRACIÓN COMPLETO -->
+    <div id="adminPanelModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/95 backdrop-blur-lg overflow-y-auto">
+        <div class="glass-panel w-full max-w-4xl my-8 rounded-2xl border border-brand-red/60 shadow-2xl p-6 sm:p-8 space-y-6">
+            
+            <div class="flex justify-between items-center border-b border-gray-800 pb-4">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-sliders text-brand-red text-2xl"></i>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Panel de Control del Taller</h3>
+                        <p class="text-xs text-gray-400">Modifica datos, imágenes y galería en tiempo real</p>
+                    </div>
+                </div>
+                <button onclick="closeAdminPanelModal()" class="text-gray-400 hover:text-white text-2xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- NAVEGACIÓN DE PESTAÑAS DENTRO DEL ADMIN -->
+            <div class="flex border-b border-gray-800 gap-2 overflow-x-auto pb-2">
+                <button onclick="switchAdminTab('tab-general')" id="btn-tab-general" class="admin-tab-btn active px-4 py-2 text-xs font-bold rounded-lg bg-brand-red text-white">1. Datos Generales</button>
+                <button onclick="switchAdminTab('tab-imagenes')" id="btn-tab-imagenes" class="admin-tab-btn px-4 py-2 text-xs font-bold rounded-lg bg-gray-900 text-gray-400">2. Imágenes Taller</button>
+                <button onclick="switchAdminTab('tab-galeria')" id="btn-tab-galeria" class="admin-tab-btn px-4 py-2 text-xs font-bold rounded-lg bg-gray-900 text-gray-400">3. Galería Antes/Después</button>
+            </div>
+
+            <!-- PESTAÑA 1: DATOS GENERALES -->
+            <div id="tab-general" class="admin-tab-content space-y-4">
+                <div class="p-4 bg-black/50 rounded-xl border border-gray-800 space-y-4">
+                    <h4 class="text-xs font-bold text-brand-red uppercase tracking-wider">Información Básica y Header</h4>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">Nombre Comercial del Taller:</label>
+                            <input type="text" id="adminNombreInput" class="w-full p-2.5 bg-gray-900 border border-gray-700 rounded text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">Subtexto / Badge Header:</label>
+                            <input type="text" id="adminHeaderBadgeInput" class="w-full p-2.5 bg-gray-900 border border-gray-700 rounded text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">Dirección Exacta:</label>
+                            <input type="text" id="adminDireccionInput" class="w-full p-2.5 bg-gray-900 border border-gray-700 rounded text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">Slogan / Bajada Principal:</label>
+                            <input type="text" id="adminSloganInput" class="w-full p-2.5 bg-gray-900 border border-gray-700 rounded text-xs text-white">
+                        </div>
+                    </div>
+
+                    <h4 class="text-xs font-bold text-brand-red uppercase tracking-wider pt-3 border-t border-gray-800">Teléfonos y WhatsApp</h4>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">Número WhatsApp (Código país sin +):</label>
+                            <input type="text" id="adminWaInput" placeholder="Ej: 5493881234567" class="w-full p-2.5 bg-gray-900 border border-gray-700 rounded text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">Teléfono Texto Visible:</label>
+                            <input type="text" id="adminPhoneDisplayInput" placeholder="Ej: Tel: Y4600" class="w-full p-2.5 bg-gray-900 border border-gray-700 rounded text-xs text-white">
+                        </div>
+                    </div>
+
+                    <h4 class="text-xs font-bold text-brand-red uppercase tracking-wider pt-3 border-t border-gray-800">Logo del Taller</h4>
+                    <div class="grid sm:grid-cols-2 gap-4 items-center">
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">Subir Imagen de Logo desde PC/Móvil:</label>
+                            <input type="file" accept="image/*" onchange="handleLogoFileUpload(event)" class="text-xs text-gray-400">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-300 mb-1">O Pegar URL Directa del Logo:</label>
+                            <input type="text" id="adminLogoUrlInput" placeholder="https://..." class="w-full p-2.5 bg-gray-900 border border-gray-700 rounded text-xs text-white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PESTAÑA 2: IMÁGENES TALLER -->
+            <div id="tab-imagenes" class="admin-tab-content space-y-4 hidden">
+                <div class="p-4 bg-black/50 rounded-xl border border-gray-800 space-y-4">
+                    <h4 class="text-xs font-bold text-brand-red uppercase tracking-wider">Imágenes Secciones de la Web</h4>
+                    
+                    <div class="grid sm:grid-cols-2 gap-4 text-xs">
+                        <div class="p-3 bg-gray-900 rounded border border-gray-800">
+                            <span class="font-bold text-white block mb-1">Fondo Principal (Hero)</span>
+                            <input type="file" accept="image/*" onchange="handleImageFile(event, 'heroBg')" class="mb-1 text-gray-400">
+                            <input type="text" id="url_heroBg" class="w-full p-1.5 bg-black border border-gray-700 rounded text-white">
+                        </div>
+
+                        <div class="p-3 bg-gray-900 rounded border border-gray-800">
+                            <span class="font-bold text-white block mb-1">Tren Delantero (Especialidad)</span>
+                            <input type="file" accept="image/*" onchange="handleImageFile(event, 'trenDelantero')" class="mb-1 text-gray-400">
+                            <input type="text" id="url_trenDelantero" class="w-full p-1.5 bg-black border border-gray-700 rounded text-white">
+                        </div>
+
+                        <div class="p-3 bg-gray-900 rounded border border-gray-800">
+                            <span class="font-bold text-white block mb-1">Distribución y Aceite</span>
+                            <input type="file" accept="image/*" onchange="handleImageFile(event, 'distribucionAceite')" class="mb-1 text-gray-400">
+                            <input type="text" id="url_distribucionAceite" class="w-full p-1.5 bg-black border border-gray-700 rounded text-white">
+                        </div>
+
+                        <div class="p-3 bg-gray-900 rounded border border-gray-800">
+                            <span class="font-bold text-white block mb-1">Chapa y Pintura</span>
+                            <input type="file" accept="image/*" onchange="handleImageFile(event, 'chapaPintura')" class="mb-1 text-gray-400">
+                            <input type="text" id="url_chapaPintura" class="w-full p-1.5 bg-black border border-gray-700 rounded text-white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PESTAÑA 3: GALERÍA ANTES Y DESPUÉS -->
+            <div id="tab-galeria" class="admin-tab-content space-y-4 hidden">
+                <div class="p-4 bg-black/50 rounded-xl border border-gray-800 space-y-4">
+                    <h4 class="text-xs font-bold text-brand-red uppercase tracking-wider">Gestión de Galería "Antes y Después"</h4>
+                    <div id="adminGaleriaInputs" class="space-y-4">
+                        <!-- Generado por JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCIONES DEL ADMIN -->
+            <div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-gray-800">
+                <button onclick="saveAdminChanges()" class="flex-1 py-3 bg-brand-red hover:bg-red-700 text-white font-bold rounded-lg shadow-red-glow">
+                    <i class="fa-solid fa-floppy-disk mr-2"></i> GUARDAR Y APLICAR CAMBIOS
+                </button>
+                <button onclick="resetDefaultConfig()" class="py-3 px-4 bg-gray-800 hover:bg-gray-700 text-gray-300 font-semibold rounded-lg text-xs">
+                    Restablecer de Fábrica
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCRIPT PRINCIPAL DE LÓGICA E INTERACTIVIDAD -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderLandingPage();
+            document.getElementById("currentYear").textContent = new Date().getFullYear();
+        });
+
+        function toggleMobileMenu() {
+            document.getElementById("mobileMenu").classList.toggle("hidden");
+        }
+
+        function renderLandingPage() {
+            const cfg = window.TALLER_CONFIG;
+
+            // Renderizar nombre comercial
+            const nombreParts = cfg.nombre.split(" ");
+            const primerPalabra = nombreParts[0] || "";
+            const restoNombre = nombreParts.slice(1).join(" ") || "";
+            document.getElementById("navNombreTaller").innerHTML = `${primerPalabra} <span class="text-brand-red">${restoNombre}</span>`;
+            
+            document.getElementById("headerBadgeText").textContent = cfg.badgeHeader || "INTEGRAL • San Pedrito (Y4600)";
+            document.getElementById("heroTitleMain").textContent = cfg.nombre;
+            document.getElementById("heroBadge").textContent = `${cfg.nombre} • Jujuy`;
+            document.getElementById("heroSloganText").textContent = cfg.slogan;
+            document.getElementById("widgetNombre").textContent = cfg.nombre;
+            document.getElementById("footerNombreTaller").textContent = cfg.nombre;
+            document.title = `${cfg.nombre} - Taller Mecánico Especializado`;
+
+            // Renderizar Logo
+            const logoIconBox = document.getElementById("logoIconBox");
+            const logoCustomImg = document.getElementById("logoCustomImg");
+            if (cfg.logoUrl && cfg.logoUrl.trim() !== "") {
+                logoIconBox.classList.add("hidden");
+                logoCustomImg.src = cfg.logoUrl;
+                logoCustomImg.classList.remove("hidden");
+            } else {
+                logoCustomImg.classList.add("hidden");
+                logoIconBox.classList.remove("hidden");
+            }
+
+            // Datos de contacto y teléfono
+            document.getElementById("navPhoneDisplay").textContent = cfg.telefonoDisplay;
+            document.getElementById("navPhoneLink").href = `tel:${cfg.telefonoDisplay}`;
+            document.getElementById("contactTelefono").textContent = cfg.telefonoDisplay;
+            document.getElementById("contactDireccion").textContent = `${cfg.direccion}, San Pedrito`;
+            document.getElementById("widgetDireccion").textContent = `${cfg.direccion}, San Salvador de Jujuy`;
+
+            // WhatsApp URLs
+            const msg = encodeURIComponent(`Hola! Quisiera realizar una consulta sobre un turno en ${cfg.nombre}.`);
+            const waUrl = `https://wa.me/${cfg.telefonoWhatsApp}?text=${msg}`;
+            document.getElementById("heroWhatsappBtn").href = waUrl;
+            document.getElementById("floatingWhatsapp").href = waUrl;
+
+            // Renderizar imágenes
+            document.getElementById("heroBgImage").src = cfg.imagenes.heroBg;
+            document.getElementById("imgTrenDelantero").src = cfg.imagenes.trenDelantero;
+            document.getElementById("imgCard1").src = cfg.imagenes.trenDelantero;
+            document.getElementById("imgCard2").src = cfg.imagenes.distribucionAceite;
+            document.getElementById("imgCard3").src = cfg.imagenes.chapaPintura;
+            document.getElementById("imgCard4").src = cfg.imagenes.escaneo;
+            document.getElementById("imgCard5").src = cfg.imagenes.frenos;
+            document.getElementById("imgCard6").src = cfg.imagenes.embragues;
+            document.getElementById("imgCard7").src = cfg.imagenes.mecanicaLigera;
+
+            // Renderizar Galería
+            renderGaleriaFrontend();
+        }
+
+        function renderGaleriaFrontend() {
+            const container = document.getElementById("galeriaContainer");
+            if (!container) return;
+            container.innerHTML = "";
+
+            const galeriaList = window.TALLER_CONFIG.galeria || DEFAULT_CONFIG.galeria;
+
+            galeriaList.forEach((item) => {
+                const card = `
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-red transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="grid grid-cols-2 gap-1 p-2 bg-black/50">
+                                <div class="relative overflow-hidden rounded-lg h-44">
+                                    <img src="${item.antes}" alt="Antes" class="w-full h-full object-cover">
+                                    <span class="absolute top-2 left-2 bg-gray-900/90 text-gray-300 font-tech font-bold text-[10px] px-2 py-0.5 rounded border border-gray-700">ANTES</span>
+                                </div>
+                                <div class="relative overflow-hidden rounded-lg h-44">
+                                    <img src="${item.despues}" alt="Después" class="w-full h-full object-cover">
+                                    <span class="absolute top-2 left-2 bg-brand-red text-white font-tech font-bold text-[10px] px-2 py-0.5 rounded shadow-red-glow">DESPUÉS</span>
+                                </div>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-white mb-1">${item.titulo}</h3>
+                                <p class="text-xs text-gray-400 font-light leading-relaxed">${item.descripcion}</p>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0">
+                            <button onclick="openBookingModal('${item.titulo}')" class="w-full py-2 bg-gray-900 hover:bg-brand-red text-xs text-gray-300 hover:text-white font-semibold rounded-lg border border-gray-800 transition-all">
+                                Consultar Trabajo Similar
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        // CONTROL DE MODAL TURNO
+        function openBookingModal(servicio) {
+            if (servicio) document.getElementById("formServicio").value = servicio;
+            document.getElementById("bookingModal").classList.remove("hidden");
+        }
+        function closeBookingModal() {
+            document.getElementById("bookingModal").classList.add("hidden");
+        }
+
+        // CONTROL DE LOGIN ADMIN
+        function openAdminLoginModal() {
+            document.getElementById("adminLoginModal").classList.remove("hidden");
+            document.getElementById("adminPasswordInput").value = "";
+            document.getElementById("adminAuthError").classList.add("hidden");
+        }
+        function closeAdminLoginModal() {
+            document.getElementById("adminLoginModal").classList.add("hidden");
+        }
+
+        function handleAdminAuth(e) {
+            e.preventDefault();
+            const pass = document.getElementById("adminPasswordInput").value.trim();
+            if (pass === "admin123" || pass === "admin") {
+                closeAdminLoginModal();
+                openAdminPanelModal();
+            } else {
+                document.getElementById("adminAuthError").classList.remove("hidden");
+            }
+        }
+
+        // CONTROL DE PANEL ADMIN MODAL
+        function openAdminPanelModal() {
+            const cfg = window.TALLER_CONFIG;
+            document.getElementById("adminNombreInput").value = cfg.nombre || "";
+            document.getElementById("adminHeaderBadgeInput").value = cfg.badgeHeader || "";
+            document.getElementById("adminDireccionInput").value = cfg.direccion || "";
+            document.getElementById("adminSloganInput").value = cfg.slogan || "";
+            document.getElementById("adminLogoUrlInput").value = cfg.logoUrl || "";
+            document.getElementById("adminWaInput").value = cfg.telefonoWhatsApp || "";
+            document.getElementById("adminPhoneDisplayInput").value = cfg.telefonoDisplay || "";
+
+            document.getElementById("url_heroBg").value = cfg.imagenes.heroBg;
+            document.getElementById("url_trenDelantero").value = cfg.imagenes.trenDelantero;
+            document.getElementById("url_distribucionAceite").value = cfg.imagenes.distribucionAceite;
+            document.getElementById("url_chapaPintura").value = cfg.imagenes.chapaPintura;
+
+            renderGaleriaAdminInputs();
+            document.getElementById("adminPanelModal").classList.remove("hidden");
+        }
+
+        function closeAdminPanelModal() {
+            document.getElementById("adminPanelModal").classList.add("hidden");
+        }
+
+        function switchAdminTab(tabId) {
+            document.querySelectorAll(".admin-tab-content").forEach(el => el.classList.add("hidden"));
+            document.querySelectorAll(".admin-tab-btn").forEach(btn => {
+                btn.classList.remove("bg-brand-red", "text-white");
+                btn.classList.add("bg-gray-900", "text-gray-400");
+            });
+
+            document.getElementById(tabId).classList.remove("hidden");
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            activeBtn.classList.remove("bg-gray-900", "text-gray-400");
+            activeBtn.classList.add("bg-brand-red", "text-white");
+        }
+
+        function renderGaleriaAdminInputs() {
+            const container = document.getElementById("adminGaleriaInputs");
+            if (!container) return;
+            container.innerHTML = "";
+
+            const list = window.TALLER_CONFIG.galeria || DEFAULT_CONFIG.galeria;
+            list.forEach((item, idx) => {
+                const html = `
+                    <div class="p-3 bg-gray-900 rounded-lg border border-gray-800 space-y-2">
+                        <span class="text-xs font-bold text-white uppercase">Trabajo #${idx + 1}</span>
+                        <input type="text" id="galeria_titulo_${idx}" value="${item.titulo}" placeholder="Título" class="w-full p-2 bg-black border border-gray-700 rounded text-xs text-white">
+                        <input type="text" id="galeria_desc_${idx}" value="${item.descripcion}" placeholder="Descripción" class="w-full p-2 bg-black border border-gray-700 rounded text-xs text-white">
+                        <div class="grid sm:grid-cols-2 gap-2">
+                            <div>
+                                <label class="text-[10px] text-gray-400">Foto ANTES (URL):</label>
+                                <input type="text" id="galeria_antes_${idx}" value="${item.antes}" class="w-full p-1.5 bg-black border border-gray-700 rounded text-xs text-white">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-gray-400">Foto DESPUÉS (URL):</label>
+                                <input type="text" id="galeria_despues_${idx}" value="${item.despues}" class="w-full p-1.5 bg-black border border-gray-700 rounded text-xs text-white">
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+        }
+
+        function handleLogoFileUpload(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    document.getElementById("adminLogoUrlInput").value = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handleImageFile(e, key) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    document.getElementById(`url_${key}`).value = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function saveAdminChanges() {
+            const cfg = window.TALLER_CONFIG;
+
+            cfg.nombre = document.getElementById("adminNombreInput").value.trim() || cfg.nombre;
+            cfg.badgeHeader = document.getElementById("adminHeaderBadgeInput").value.trim();
+            cfg.direccion = document.getElementById("adminDireccionInput").value.trim();
+            cfg.slogan = document.getElementById("adminSloganInput").value.trim();
+            cfg.logoUrl = document.getElementById("adminLogoUrlInput").value.trim();
+            cfg.telefonoWhatsApp = document.getElementById("adminWaInput").value.trim();
+            cfg.telefonoDisplay = document.getElementById("adminPhoneDisplayInput").value.trim();
+
+            cfg.imagenes.heroBg = document.getElementById("url_heroBg").value.trim();
+            cfg.imagenes.trenDelantero = document.getElementById("url_trenDelantero").value.trim();
+            cfg.imagenes.distribucionAceite = document.getElementById("url_distribucionAceite").value.trim();
+            cfg.imagenes.chapaPintura = document.getElementById("url_chapaPintura").value.trim();
+
+            const galeriaCount = (cfg.galeria || DEFAULT_CONFIG.galeria).length;
+            const updatedGaleria = [];
+            for (let i = 0; i < galeriaCount; i++) {
+                updatedGaleria.push({
+                    titulo: document.getElementById(`galeria_titulo_${i}`).value.trim(),
+                    descripcion: document.getElementById(`galeria_desc_${i}`).value.trim(),
+                    antes: document.getElementById(`galeria_antes_${i}`).value.trim(),
+                    despues: document.getElementById(`galeria_despues_${i}`).value.trim()
+                });
+            }
+            cfg.galeria = updatedGaleria;
+
+            localStorage.setItem("TALLER_CONFIG_STORAGE", JSON.stringify(cfg));
+            window.TALLER_CONFIG = cfg;
+
+            renderLandingPage();
+            closeAdminPanelModal();
+        }
+
+        function resetDefaultConfig() {
+            if (confirm("¿Deseas restaurar la configuración original?")) {
+                localStorage.removeItem("TALLER_CONFIG_STORAGE");
+                window.TALLER_CONFIG = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+                renderLandingPage();
+                closeAdminPanelModal();
+            }
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const nombre = document.getElementById("formNombre").value;
+            const tel = document.getElementById("formTelefono").value;
+            const vehiculo = document.getElementById("formVehiculo").value;
+            const servicio = document.getElementById("formServicio").value;
+            const msg = document.getElementById("formMensaje").value;
+
+            const text = `*SOLICITUD DE TURNO - ${window.TALLER_CONFIG.nombre}*%0A%0A*Cliente:* ${nombre}%0A*Tel:* ${tel}%0A*Auto:* ${vehiculo}%0A*Servicio:* ${servicio}%0A*Detalles:* ${msg}`;
+            window.open(`https://wa.me/${window.TALLER_CONFIG.telefonoWhatsApp}?text=${text}`, "_blank");
+            closeBookingModal();
+        }
+    </script>
+</body>
+</html>
